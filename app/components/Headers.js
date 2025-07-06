@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation"; // App Router 사용시
+import Link from "next/link";
 // import { useRouter } from "next/router"; // Pages Router 사용시
 import Image from "next/image";
 
@@ -49,7 +50,7 @@ export default function Header() {
         <div className="bg-white">
           <div className="mx-auto flex w-full max-w-[1190px] items-center justify-between bg-white px-4 h-16">
             <div>
-              <a href="/">
+              <Link href="/">
                 <img
                   alt="이스타항공 로고"
                   width="143"
@@ -57,7 +58,7 @@ export default function Header() {
                   src="https://zeimage.eastarjet.com/newstar/images/road3.png"
                   className="h-12 w-auto"
                 />
-              </a>
+              </Link>
             </div>
 
             {/* PC 메뉴 */}
@@ -308,7 +309,7 @@ export default function Header() {
                 </div>
 
                 <div className="py-3.5 text-lg font-medium text-gray-800 hover:font-bold hover:text-primary">
-                  <a href="/events">이벤트</a>
+                  <Link href="/events/">이벤트</Link>
                 </div>
 
                 {/* 제휴상품 드롭다운 */}
@@ -488,9 +489,9 @@ export default function Header() {
             <a href="#" className="hover:text-primary">
               고객센터
             </a>
-            <a href="/events" className="hover:text-primary">
+            <Link href="/events" className="hover:text-primary">
               이벤트
-            </a>
+            </Link>
             <a href="#" className="hover:text-primary">
               별별스토어
             </a>
