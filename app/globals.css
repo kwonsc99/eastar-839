@@ -1,0 +1,303 @@
+@import "tailwindcss";
+
+@theme {
+  /* 커스텀 색상 */
+  --color-primary: #d6001c;
+  --color-primary-50: #f7ccce;
+  --color-primary-100: #f5b8bc;
+  --color-primary-200: #ef999c;
+  --color-primary-300: #e97a7e;
+  --color-primary-400: #e35b60;
+  --color-primary-500: #de3349;
+  --color-primary-600: #d6001c;
+  --color-primary-700: #b60018;
+  --color-primary-800: #960014;
+  --color-primary-900: #760010;
+
+  --color-secondary: #001b2a;
+  --color-secondary-400: #9da6b6;
+  --color-secondary-500: #5c6a86;
+  --color-secondary-800: #002235;
+  --color-secondary-900: #001b2a;
+
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-150: #eaecef;
+  --color-gray-200: #e5e7eb;
+  --color-gray-250: #d8dae0;
+  --color-gray-300: #d1d5db;
+  --color-gray-350: #b7b9bd;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+
+  /* 폰트 */
+  --font-family-sans: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
+    Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR",
+    "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    sans-serif;
+
+  /* 커스텀 spacing */
+  --spacing-15: 3.75rem;
+
+  /* 커스텀 width */
+  --width-desktop-contents: 1190px;
+
+  /* 애니메이션 */
+  --animate-fade-in: fadeIn 0.5s ease-in-out;
+  --animate-slide-up: slideUp 0.5s ease-out;
+
+  /* 박스 섀도우 */
+  --shadow-300: 0 0 28px 0 rgba(0, 0, 0, 0.1);
+  --shadow-400: 0 0 40px 0 rgba(0, 0, 0, 0.1);
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-family-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    max-width: var(--width-desktop-contents);
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .btn-primary {
+    @apply bg-primary hover:bg-primary-500 text-white font-semibold py-2 px-4 rounded transition-colors duration-200;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded transition-colors duration-200;
+  }
+
+  .card {
+    @apply bg-white rounded-lg shadow-md p-6 border border-gray-200;
+  }
+
+  .input-field {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent;
+  }
+
+  .shadow-300 {
+    box-shadow: var(--shadow-300);
+  }
+
+  .shadow-400 {
+    box-shadow: var(--shadow-400);
+  }
+
+  .animate-fade-in {
+    animation: var(--animate-fade-in);
+  }
+
+  .animate-slide-up {
+    animation: var(--animate-slide-up);
+  }
+
+  /* 커스텀 width 클래스 */
+  .w-desktop-contents {
+    width: var(--width-desktop-contents);
+  }
+
+  .max-w-desktop-contents {
+    max-width: var(--width-desktop-contents);
+  }
+
+  .min-w-desktop-xs {
+    min-width: 1280px;
+  }
+
+  .min-w-desktop-md {
+    min-width: 1920px;
+  }
+
+  .max-w-desktop-xs {
+    max-width: 1280px;
+  }
+
+  .max-w-desktop-md {
+    max-width: 1920px;
+  }
+
+  /* spacing */
+  .mb-15 {
+    margin-bottom: var(--spacing-15);
+  }
+
+  .mt-15 {
+    margin-top: var(--spacing-15);
+  }
+
+  .pb-15 {
+    padding-bottom: var(--spacing-15);
+  }
+
+  .pt-15 {
+    padding-top: var(--spacing-15);
+  }
+
+  /* 커스텀 gray 색상들 */
+  .text-gray-150 {
+    color: var(--color-gray-150);
+  }
+
+  .text-gray-250 {
+    color: var(--color-gray-250);
+  }
+
+  .text-gray-350 {
+    color: var(--color-gray-350);
+  }
+
+  .bg-gray-150 {
+    background-color: var(--color-gray-150);
+  }
+
+  .bg-gray-250 {
+    background-color: var(--color-gray-250);
+  }
+
+  .border-gray-150 {
+    border-color: var(--color-gray-150);
+  }
+
+  .border-gray-250 {
+    border-color: var(--color-gray-250);
+  }
+
+  .border-t-gray-250 {
+    border-top-color: var(--color-gray-250);
+  }
+
+  .border-b-gray-250 {
+    border-bottom-color: var(--color-gray-250);
+  }
+
+  /* secondary 색상들 */
+  .text-secondary {
+    color: var(--color-secondary);
+  }
+
+  .text-secondary-400 {
+    color: var(--color-secondary-400);
+  }
+
+  .text-secondary-500 {
+    color: var(--color-secondary-500);
+  }
+
+  .text-secondary-800 {
+    color: var(--color-secondary-800);
+  }
+
+  .text-secondary-900 {
+    color: var(--color-secondary-900);
+  }
+
+  .bg-secondary {
+    background-color: var(--color-secondary);
+  }
+
+  .bg-secondary-400 {
+    background-color: var(--color-secondary-400);
+  }
+
+  .bg-secondary-500 {
+    background-color: var(--color-secondary-500);
+  }
+
+  .bg-secondary-800 {
+    background-color: var(--color-secondary-800);
+  }
+
+  .bg-secondary-900 {
+    background-color: var(--color-secondary-900);
+  }
+
+  .border-secondary {
+    border-color: var(--color-secondary);
+  }
+
+  .border-secondary-800 {
+    border-color: var(--color-secondary-800);
+  }
+
+  .border-secondary-900 {
+    border-color: var(--color-secondary-900);
+  }
+}
+
+@layer utilities {
+  .break-keep {
+    word-break: keep-all;
+  }
+}
+
+.event-card {
+  transition: transform 0.2s ease-in-out;
+}
+
+.event-card:hover {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .event-card {
+    flex-direction: column;
+  }
+
+  .event-card .event-image {
+    width: 100%;
+    height: 200px;
+  }
+
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
