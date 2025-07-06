@@ -2,6 +2,7 @@
 
 import Header from "../../components/Headers";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 export default function CouponPage() {
   const [showConfetti, setShowConfetti] = useState(true);
@@ -135,7 +136,7 @@ export default function CouponPage() {
 
         {/* 돌아가기 버튼 */}
         <div className="flex justify-center mt-8">
-          <a
+          <Link
             href="/events"
             className="inline-flex items-center px-6 py-3 text-gray-600 hover:text-gray-800 font-medium transition-colors duration-200"
           >
@@ -153,7 +154,7 @@ export default function CouponPage() {
               />
             </svg>
             이벤트 목록으로 돌아가기
-          </a>
+          </Link>
         </div>
       </div>
     </div>
