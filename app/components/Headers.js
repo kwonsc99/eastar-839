@@ -10,6 +10,7 @@ export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState("");
   const router = useRouter();
+  const [isQRModalOpen, setIsQRModalOpen] = useState(false);
 
   // 로그인 상태 체크
   useEffect(() => {
@@ -23,6 +24,10 @@ export default function Header() {
       }
     }
   }, []);
+
+  const toggleQRModal = () => {
+    setIsQRModalOpen(!isQRModalOpen);
+  };
 
   // 로그아웃 처리
   const handleLogout = () => {
@@ -381,6 +386,35 @@ export default function Header() {
                   </svg>
                   별별스토어
                 </a>
+                {/* QR 버튼 */}
+                <button
+                  onClick={toggleQRModal}
+                  className="flex items-center gap-x-1 text-sm font-medium hover:text-primary"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="17"
+                    height="17"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <rect x="3" y="3" width="5" height="5" />
+                    <rect x="16" y="3" width="5" height="5" />
+                    <rect x="3" y="16" width="5" height="5" />
+                    <path d="M21 16h-3a2 2 0 0 0-2 2v3" />
+                    <path d="M21 21v.01" />
+                    <path d="M12 7v3a2 2 0 0 1-2 2H7" />
+                    <path d="M3 12h.01" />
+                    <path d="M12 3h.01" />
+                    <path d="M12 16v.01" />
+                    <path d="M16 12h1" />
+                    <path d="M21 12v.01" />
+                    <path d="M12 21v-1" />
+                  </svg>
+                  QR코드
+                </button>
 
                 <span className="text-gray-250">|</span>
 
@@ -495,6 +529,13 @@ export default function Header() {
             <a href="#" className="hover:text-primary">
               별별스토어
             </a>
+            <button
+              onClick={toggleQRModal}
+              className="text-left hover:text-primary"
+            >
+              QR코드
+            </button>
+
             <a href="#" className="hover:text-primary">
               기내면세 온라인몰
             </a>
@@ -521,6 +562,47 @@ export default function Header() {
               </>
             )}
           </nav>
+        </div>
+      )}
+      {isQRModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[100]">
+          <div className="bg-white rounded-lg p-6 max-w-sm w-full mx-4">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-lg font-semibold">QR 코드</h3>
+              <button
+                onClick={toggleQRModal}
+                className="text-gray-500 hover:text-gray-700"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div className="flex justify-center mb-4">
+              <div className="w-48 h-48 bg-gray-100 flex items-center justify-center rounded-lg">
+                <Image
+                  src="/qrcode.png" // 실제 QR 이미지 경로
+                  alt="QR 코드"
+                  width={192}
+                  height={192}
+                  className="rounded-lg"
+                />{" "}
+              </div>
+            </div>
+            <p className="text-center text-sm text-gray-600">
+              스마트폰으로 QR 코드를 스캔하여 모바일 서비스를 이용하세요
+            </p>
+          </div>
         </div>
       )}
     </>
