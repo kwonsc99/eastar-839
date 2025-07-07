@@ -69,10 +69,10 @@ export default function Home() {
 
                 <div className="bg-gray-50 p-4 rounded-lg">
                   <ul className="space-y-1 text-sm">
-                    <li>• 권석찬: 010-8567-5197</li>
-                    <li>• 김윤서: 010-3850-6574</li>
-                    <li>• 김하늘: 010-7642-7294</li>
-                    <li>• 류석현: 010-2447-8516</li>
+                    <li>• 권석찬: 010-8567-5197 / kwonsc99@gmail.com</li>
+                    <li>• 김윤서: 010-3850-6574 / dbstj7457@naver.com</li>
+                    <li>• 김하늘: 010-7642-7294 / khn7294@naver.com</li>
+                    <li>• 류석현: 010-2447-8516 / darkknightttt@naver.com</li>
                   </ul>
                 </div>
 
