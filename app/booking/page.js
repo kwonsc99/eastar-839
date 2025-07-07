@@ -1,7 +1,7 @@
 // app/booking/page.js
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import {
   ArrowLeft,
@@ -10,12 +10,15 @@ import {
   Star,
   Clock,
   Users,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export default function InflightMeal() {
   const [selectedMeal, setSelectedMeal] = useState(null);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const scrollRef = useRef(null);
   const router = useRouter();
 
   const meals = [
@@ -60,6 +63,18 @@ export default function InflightMeal() {
     router.back();
   };
 
+  const scrollLeft = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({ left: -280, behavior: "smooth" });
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({ left: 280, behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       {/* Header */}
@@ -96,36 +111,52 @@ export default function InflightMeal() {
           </div>
         </div>
 
-        {/* 메뉴 목록 - 가로 스크롤 */}
+        {/* 메뉴 목록 - 좌우 버튼과 함께 */}
         <div className="mb-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-4 px-1">
-            셰프 특선 메뉴
-          </h2>
+          <div className="flex items-center justify-between mb-4 px-1">
+            <h2 className="text-xl font-bold text-gray-900">셰프 특선 메뉴</h2>
+            <div className="flex space-x-2">
+              <button
+                onClick={scrollLeft}
+                className="w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-50 transition-all"
+              >
+                <ChevronLeft className="w-5 h-5 text-gray-600" />
+              </button>
+              <button
+                onClick={scrollRight}
+                className="w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-50 transition-all"
+              >
+                <ChevronRight className="w-5 h-5 text-gray-600" />
+              </button>
+            </div>
+          </div>
 
           <div
-            className="flex space-x-4 overflow-x-auto pb-4 px-1"
+            ref={scrollRef}
+            className="flex space-x-4 overflow-x-auto pb-4 px-1 scrollbar-hide"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {meals.map((meal) => (
               <div
                 key={meal.id}
-                className={`bg-white rounded-3xl shadow-lg transition-all cursor-pointer flex-shrink-0 w-64 overflow-hidden ${
+                className={`bg-white rounded-3xl shadow-lg transition-all cursor-pointer flex-shrink-0 w-72 overflow-hidden ${
                   selectedMeal?.id === meal.id
                     ? "border-3 border-[#D21521] shadow-2xl transform scale-105"
                     : "border border-gray-100 hover:shadow-xl hover:scale-102"
                 }`}
                 onClick={() => handleMealSelect(meal)}
               >
-                {/* 메뉴 이미지 - 세로 길게 */}
-                <div className="relative w-full h-80 overflow-hidden">
+                {/* 메뉴 이미지 - 1024:1536 비율 (2:3) */}
+                <div className="relative w-full h-96 overflow-hidden">
                   <Image
                     src={meal.image}
                     alt={meal.name}
                     fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 256px, 256px"
+                    className="object-cover object-center"
+                    sizes="288px"
                     onError={(e) => {
-                      e.target.src = "/images/placeholder-meal.jpg";
+                      e.target.src =
+                        "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjg4IiBoZWlnaHQ9IjM4NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNmNGY2Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzllYTNhOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPuq4sOuCtOyLnSDsnbTrr4jihKM8L3RleHQ+PC9zdmc+";
                     }}
                   />
 
@@ -156,7 +187,7 @@ export default function InflightMeal() {
                   </div>
 
                   {/* 하단 그라데이션 오버레이 */}
-                  <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
                   {/* 이미지 위 텍스트 */}
                   <div className="absolute bottom-4 left-4 right-4 text-white z-10">
@@ -206,14 +237,14 @@ export default function InflightMeal() {
 
             {/* 선택하지 않음 옵션 */}
             <div
-              className={`bg-white rounded-3xl shadow-lg transition-all cursor-pointer flex-shrink-0 w-64 overflow-hidden border-2 border-dashed ${
+              className={`bg-white rounded-3xl shadow-lg transition-all cursor-pointer flex-shrink-0 w-72 overflow-hidden border-2 border-dashed ${
                 selectedMeal === null
                   ? "border-[#D21521] bg-red-50 shadow-2xl transform scale-105"
                   : "border-gray-300 hover:shadow-xl hover:scale-102"
               }`}
               onClick={() => setSelectedMeal(null)}
             >
-              <div className="p-6 h-full flex flex-col justify-center items-center min-h-[400px]">
+              <div className="p-6 h-full flex flex-col justify-center items-center min-h-[450px]">
                 <div
                   className={`w-16 h-16 rounded-full border-2 border-dashed flex items-center justify-center mb-6 transition-all ${
                     selectedMeal === null

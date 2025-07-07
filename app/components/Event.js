@@ -38,7 +38,6 @@ const Event = () => {
       id: 2,
       title: "어깨P자, 청년 힐링 여행 지원 캠페인",
       subtitle: "기름값만 내고 다녀오세요~",
-      description: "특가 & 오즈카 미술관 티켓 증정 이벤트",
       image: "/pp.png",
       thumbnail: "/thumb2.png",
       period: "2025-07-01~",
