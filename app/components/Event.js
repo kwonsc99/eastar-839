@@ -29,7 +29,7 @@ const Event = () => {
       subtitle: "이스타를 찾아라",
       image: "/eventaa.jpg",
       thumbnail: "/thumb1.png",
-      period: "2025-07-03~2025-12-31",
+      period: "2025-07-03~2025-07-29",
       category: "진행중 이벤트",
       bgColor: "bg-red-500",
       btnColor: "#",
@@ -37,11 +37,11 @@ const Event = () => {
     {
       id: 2,
       title: "어깨P자, 청년 힐링 여행 지원 캠페인",
-      subtitle: "편도승객 37,200원~",
+      subtitle: "기름값만 내고 다녀오세요~",
       description: "특가 & 오즈카 미술관 티켓 증정 이벤트",
       image: "/pp.png",
       thumbnail: "/thumb2.png",
-      period: "2025-07-01~2025-07-08",
+      period: "2025-07-01~",
       category: "진행중 이벤트",
       bgColor: "bg-blue-400",
     },
@@ -332,13 +332,14 @@ const Event = () => {
             <div className="flex-1 overflow-y-auto p-6 md:p-8">
               {/* 이벤트 이미지 */}
               <div className="mb-8">
-                <div className="relative w-full h-80 md:h-96 lg:h-[500px] rounded-2xl overflow-hidden">
+                <div className="relative w-full rounded-2xl overflow-auto">
                   <Image
-                    src="/839-event.jpg"
+                    src="/839-event.png"
                     alt="팔삼구 이벤트"
-                    layout="fill"
-                    objectFit="cover"
-                    className="rounded-2xl"
+                    width={0}
+                    height={0}
+                    sizes="100vw"
+                    className="w-full h-auto rounded-2xl"
                   />
                 </div>
               </div>
